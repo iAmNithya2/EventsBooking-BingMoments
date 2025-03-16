@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        /* Background Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('events.jfif') no-repeat center center/cover;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        /* Header Styling */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        /* Navigation Bar */
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Event Section */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+
+        h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        /* Event Boxes */
+        .event-box {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 15px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .event-box:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Event Image */
+        .event-box img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Sub-event Section */
+        .sub-events {
+            display: none;
+            position: absolute;
+            width: 100%;
+            top: 100%;
+            left: 0;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .sub-event {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .sub-event img {
+    width: 100%;
+    border-radius: 10px;
+    height: 200px; 
+    object-fit: cover;
+}
+
+
+        .sub-event a {
+            display: block;
+            color: #4CAF50;
+            font-weight: bold;
+            padding: 5px 0;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .sub-event a:hover {
+            text-decoration: underline;
+        }
+
+        /* Event Details */
+        .event-details {
+            display: none;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Event Container */
+        .event-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Popup Box */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.5);
+            z-index: 1000;
+            color: white;
+        }
+
+        .popup img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .popup button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .popup button:hover {
+            background: #45a049;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Events</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="booking.html">Book Tickets</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2> Events</h2>
+        <div class="event-container">
+            <!-- Concert Event -->
+            <div class="event-box" onclick="toggleSubEvents('concert')">
+                <img src="Concert1.jpg" alt="Concert">
+                <h3>Concert</h3>
+                <p>Experience live music like never before!</p>
+                <div id="concert-sub-events" class="sub-events">
+                    <div class="sub-event">
+                        <img src="Maroon5.webp" 
+                        alt="Maroon 5 Concert" 
+                        onclick="showPopup('Maroon 5 Concert', '15th May 2025','7:00 PM (IST)','Christ Stadium, Bangalore','Rs.10,000', this.src)">
+                        <a onclick="showPopup('Maroon 5 Concert', '15th May 2025','7:00 PM (IST)','Christ Stadium, Bangalore','Rs.10,000', 'Maroon5.webp')">Maroon 5 Concert</a>
+                    </div>
+                    <div class="sub-event">
+                        <img src="BBB.jfif" alt="Bing Bing Boo Concert"onclick="showPopup('Bing Bing Boo Concert', '15th May 2025','7:00 PM(IST)','Christ Stadium, Bangalore','Rs.10,000', this.src)">
+                        <a onclick="showPopup('Bing Bing Boo Concert', '15th May 2025','7:00 PM (IST)', 'Christ Stadium, Bangalore','Rs.10,000','BBB.jfif')">Bing Bing Boo Concert</a>
+                    </div>
+                </div>
+                <div id="concert-event-details" class="event-details"></div>
+            </div>
+
+            <div class="event-box" onclick="toggleSubEvents('sports')">
+                <img src="Sports1.jpg" alt="Sports">
+                <h3>Sports</h3>
+                <p>Cheer for your favorite teams in action!</p>
+                <div id="sports-sub-events" class="sub-events">
+                    <div class="sub-event">
+                        <img src="ipl.avif" alt="IPL Match" onclick="showPopup('IPL Match 2025', '15th May 2025', '7:00 PM (IST)','Christ Stadium, Bangalore','Rs. 10,000', this.src)">
+                        <a onclick="showPopup('IPL Match 2025', '15th May 2025', '7:00 PM (IST)','Christ Stadium, Bangalore','Rs. 10,000','ipl.avif')">IPL Match 2025</a>
+                    </div>
+                </div>
+                <div id="sports-event-details" class="event-details"></div>
+            </div>
+
+            <!-- Theatre Event -->
+            <div class="event-box" onclick="toggleSubEvents('theatre')">
+                <img src="Theatre1.jpg" alt="Theatre">
+                <h3>Theatre</h3>
+                <p>Enjoy the magic of live theatre!</p>
+                <div id="theatre-sub-events" class="sub-events">
+                    <div class="sub-event">
+                        <img src="Hamilton.webp" alt="Hamilton Play" onclick="showPopup('Hamilton', '15th May 2025',  '7:00 PM (IST)','Christ Stadium, Bangalore','Rs. 10,000', this.src)">
+                        <a onclick="showPopup('Hamilton' , '15th May 2025', '7:00 PM (IST)','Christ Stadium, Bangalore','Rs. 10,000','Hamilton.webp')">Hamilton</a>
+                    </div>
+                    <div class="sub-event">
+                        <img src="Opera.jpg" alt="Phantom of the Opera" onclick="showPopup('Phantom of the Opera', '15th May 2025',  '7:00 PM (IST)','Christ Stadium, Bangalore','Rs. 10,000', this.src)">
+                        <a onclick="showPopup('Phantom of the Opera', '15th May 2025',  '7:00 PM (IST)','Christ Stadium, Bangalore','Rs. 10,000','Opera.jpg')">Phantom of the Opera</a>
+                    </div>
+                </div>
+                <div id="theatre-event-details" class="event-details"></div>
+            </div>
+        </div>
+    </main>
+
+    <div id="popup" class="popup">
+        <h3 id="popup-title"></h3>
+        <img id="popup-image" src="" alt="">
+        <p id="popup-date"></p>
+        <p id="popup-time"></p>
+        <p id="popup-venue"></p>
+        <p id="popup-price"></p>
+      
+        <button onclick="redirectToBooking()">Book Now</button>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <div id="overlay" class="overlay" onclick="closePopup()"></div>
+    <script>
+        let selectedEvent = '';
+        function showPopup(title, date, time, venue, price, imageUrl) {
+                selectedEvent = title;
+                document.getElementById("popup-title").innerText = title;
+                document.getElementById("popup-date").innerText = `Date: ${date}`;
+                document.getElementById("popup-time").innerText = `Time: ${time}`;
+                document.getElementById("popup-venue").innerText = `Venue: ${venue}`;
+                document.getElementById("popup-price").innerText = `Price per Ticket: ${price}`;
+                document.getElementById("popup-image").src = imageUrl;
+                document.getElementById("popup").style.display = "block";
+                document.getElementById("overlay").style.display = "block";
+             }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+        function redirectToBooking() {
+        window.location.href = `register.html?event=${encodeURIComponent(selectedEvent)}`;
+        }
+
+        function toggleSubEvents(eventId) {
+            let subEvents = document.getElementById(eventId + "-sub-events");
+            subEvents.style.display = subEvents.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+</html>     
